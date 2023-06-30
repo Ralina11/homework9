@@ -1,0 +1,34 @@
+[
+  {
+    "model": "main.category",
+    "pk": 1,
+    "fields": {
+      "name": "спортивная одежда",
+      "description": ""
+    }
+  },
+  {
+    "model": "main.category",
+    "pk": 2,
+    "fields": {
+      "name": "верхняя одежда",
+      "description": null
+    }
+  },
+  {
+    "model": "main.category",
+    "pk": 3,
+    "fields": {
+      "name": "купальники",
+      "description": "одежда для купания"
+    }
+  },
+  {
+    "model": "main.category",
+    "pk": 4,
+    "fields": {
+      "name": "головные уборы",
+      "description": "шляпы, шапки, панамки, кепки"
+    }
+  }
+]
