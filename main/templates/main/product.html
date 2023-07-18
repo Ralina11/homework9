@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+{% load my_tag %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        {% for object in object_list %}
+        <div class="col-md-14">
+                <h5>{{ object.name }}</h5>
+                <p>Цена: {{ object.price }}</p>
+                <p>{{ object.description }}</p>
+                    <img class="img-fluid"
+                        src="{{ object.picture|mymedia}}"
+                        alt="Product image">
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
