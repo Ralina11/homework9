@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
+from main.forms import ProductForm
 from main.models import Category, Product
 
 
@@ -67,3 +69,21 @@ class OneProductDetailView(DetailView):
         context_data['title'] = f'  {product_item.name}'
 
         return context_data
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy("main:index_list")
+
+
+class OneProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy("main:index_list")
+
+
+class OneProductDeleteView(DeleteView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy("main:index_list")

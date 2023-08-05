@@ -1,10 +1,12 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-
-  <div class="row">
-    {% for object in object_list %}
+    <div class="col-12">
+            <a href="{% url 'main:product_create' %}" class="btn btn-primary m-2">Добавить продукт</a>
+    </div>
+    <div class="row">
+        {% for object in object_list %}
             {% include 'main/includes/inc_products.html' with object=object %}
-    {% endfor %}
-          </div>
+        {% endfor %}
+    </div>
 {%endblock%}
