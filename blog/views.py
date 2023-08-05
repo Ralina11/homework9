@@ -21,6 +21,7 @@ class BlogCreateView(CreateView):
 
         return super().form_valid(form)
 
+
 class BlogListView(ListView):
     """Контроллер списка постов"""
     model = Blog
@@ -30,6 +31,7 @@ class BlogListView(ListView):
         queryset = super().get_queryset(*args, **kwargs)
         queryset = queryset.filter(is_published=True)
         return queryset
+
 
 class BlogDetailView(DetailView):
     """Контроллер карточки одного поста"""

@@ -16,21 +16,21 @@ class ProductsListView(ListView):
     extra_context = {
         'title': 'Товары'
     }
-# def index(request):
-#     """Контроллер страницы со всеми товарами"""
-#     context = {
-#         'object_list': Product.objects.all(),
-#         'title': 'Товары'
-#     }
-#     return render(request, 'main/index_list.html', context)
+def index(request):
+    """Контроллер страницы со всеми товарами"""
+    context = {
+        'object_list': Product.objects.all(),
+        'title': 'Товары'
+    }
+    return render(request, 'main/index_list.html', context)
 
-# def categories(request):
-#     """Контроллер страницы со списком категорий"""
-#     context = {
-#         'object_list': Category.objects.all(),
-#         'title': 'Категории'
-#     }
-#     return render(request, 'main/categories_list.html', context)
+def categories(request):
+    """Контроллер страницы со списком категорий"""
+    context = {
+        'object_list': Category.objects.all(),
+        'title': 'Категории'
+    }
+    return render(request, 'main/categories_list.html', context)
 
 class CategoryListView(ListView):
     """Контроллер страницы со списком категорий"""
@@ -85,5 +85,4 @@ class OneProductUpdateView(UpdateView):
 
 class OneProductDeleteView(DeleteView):
     model = Product
-    form_class = ProductForm
     success_url = reverse_lazy("main:index_list")
