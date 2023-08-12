@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'main',
-    'blog',
     'users',
 ]
 
@@ -142,9 +141,14 @@ AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_PORT = '465'
-EMAIL_HOST_USER = 'ralina99@yandex.ru'
-EMAIL_HOST_PASSWORD = '110399'
+SITE_ID = 1
+SITE_ADRES = "127.0.0.1:8000"
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'nik_aleks@inbox.ru'
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
+# latypovaralin@yandex.ru
