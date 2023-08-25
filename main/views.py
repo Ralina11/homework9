@@ -1,5 +1,7 @@
+from django.contrib.auth import mixins
 from django.db import transaction
 from django.forms import inlineformset_factory
+from django.http import Http404
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -10,7 +12,7 @@ from main.models import Category, Product, Version
 
 # Create your views here.
 
-class ProductsListView(ListView):
+class ProductsListView(mixins.LoginRequiredMixin, ListView):
     """Контроллер страницы со всеми товарами"""
     model = Product
     template_name = 'main/index_list.html'
@@ -68,7 +70,7 @@ class OneProductDetailView(DetailView):
         return context_data
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(mixins.LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy("main:index_list")
@@ -78,10 +80,16 @@ class ProductCreateView(CreateView):
         return super().form_valid(form)
 
 
-class OneProductUpdateView(UpdateView):
+class OneProductUpdateView(mixins.LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy("main:index_list")
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        if obj.owner != self.request.user:
+            raise Http404("Вы не являетесь владельцем продукта.")
+        return obj
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
@@ -105,7 +113,7 @@ class OneProductUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-class OneProductDeleteView(DeleteView):
+class OneProductDeleteView(mixins.LoginRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy("main:index_list")
 
